@@ -1,0 +1,2394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="GenomeAI genetic variant analysis" />
+  <title>GenomeAI | Variant Analysis</title>
+
+  <link rel="stylesheet" href="src/styles.css" />
+  <link rel="stylesheet" href="src/variant.css" />
+  <link rel="stylesheet" href="src/evaluation.css" />
+</head>
+
+<body>
+
+  <div class="shell">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <a class="brand" href="#dashboard">
+        <span class="helix">⌬</span>
+
+        <span>
+          Genome<span>AI</span>
+          <small>GENETIC ANALYSIS</small>
+        </span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+
+        <button class="nav-link active" data-page="dashboard">
+          <span>▦</span>
+          Dashboard
+        </button>
+
+        <button class="nav-link" data-page="variant">
+          <span>⌁</span>
+          Variant Analysis
+        </button>
+
+        <button class="nav-link" data-page="evaluation">
+          <span>◈</span>
+          Model Evaluation
+        </button>
+        <button class="nav-link" data-page="research-results">
+  <span>◇</span>
+  Research Results
+</button>
+<button
+  class="nav-link"
+  data-page="experimental-analysis"
+>
+  <span>◇</span>
+  Experimental Analysis
+</button>
+
+      </nav>
+
+            <div class="sidebar-foot">
+        <span class="status-dot"></span>
+        Analysis workspace
+      </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main>
+
+      <!-- Top Bar -->
+      <header class="topbar">
+
+        <button class="menu" aria-label="Toggle navigation">
+          ☰
+        </button>
+
+        <div>
+
+          <p class="eyebrow">
+            GENOMIC INTELLIGENCE WORKBENCH
+          </p>
+
+          <h1 id="page-title">
+            Research dashboard
+          </h1>
+
+        </div>
+
+      </header>
+
+
+      <!-- ========================= -->
+      <!-- DASHBOARD PAGE -->
+      <!-- ========================= -->
+
+      <section id="dashboard" class="page active">
+
+        <div class="hero">
+
+          <div>
+
+            <p class="eyebrow cyan">
+              SEQUENCE-LEVEL VARIANT ANALYSIS
+            </p>
+
+            <h2>
+              Analyze genetic<br />
+              variant records.
+            </h2>
+
+            <p>
+              Match cleaned DNA sequence context against predefined
+              variant rules in a focused genomic research interface.
+            </p>
+
+            <div class="hero-actions">
+
+              <button class="primary" data-go="variant">
+                Analyze a variant
+                <span>→</span>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="hero-graphic" aria-hidden="true">
+
+            <div class="orbit o1"></div>
+            <div class="orbit o2"></div>
+
+            <div class="dna">
+              A<br />
+              T<br />
+              G<br />
+              C<br />
+              A<br />
+              G
+            </div>
+
+            <div class="dna right">
+              T<br />
+              A<br />
+              C<br />
+              G<br />
+              T<br />
+              C
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="feature-grid single-feature">
+
+          <article class="feature-card">
+
+            <div class="icon cyan-bg">
+              ⌁
+            </div>
+
+            <p class="eyebrow">
+              WORKFLOW 01
+            </p>
+
+            <h3>
+              Genetic Variant Analysis
+            </h3>
+
+            <p>
+              Inspect a selected gene and sequence context
+              against specific variant rules.
+            </p>
+
+            <button class="text-button" data-go="variant">
+              Open analyzer →
+            </button>
+
+          </article>
+
+
+          <article class="feature-card">
+
+            <div class="icon violet-bg">
+              ✓
+            </div>
+
+            <p class="eyebrow">
+              RESULT FIELDS
+            </p>
+
+            <h3>
+              Structured output
+            </h3>
+
+            <p>
+              View classification, gene, variant, mutation type,
+              and associated disease in one concise result card.
+            </p>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================= -->
+      <!-- VARIANT ANALYSIS PAGE -->
+      <!-- ========================= -->
+
+      <section id="variant" class="page">
+
+        <div class="page-intro">
+
+          <p class="eyebrow cyan">
+            WORKFLOW 01
+          </p>
+
+          <h2>
+            Genetic Variant Analysis
+          </h2>
+
+          <p>
+            Select a gene, enter a mutated DNA sequence,
+            and inspect the matching variant rule.
+          </p>
+
+        </div>
+
+
+        <div class="analysis-grid">
+
+          <section class="input-card">
+
+            <div class="input-head">
+
+              <label for="variant-sequence">
+                Mutated sequence
+              </label>
+
+              <span id="variant-counter">
+                0 bp
+              </span>
+
+            </div>
+
+
+            <textarea
+              id="variant-sequence"
+              placeholder="Paste DNA sequence here (A, C, G, T, N)."
+              spellcheck="false"
+            ></textarea>
+
+
+            <p
+              id="variant-error"
+              class="error"
+              role="alert"
+            ></p>
+
+
+            <div class="form-row">
+
+
+
+
+              <button
+                id="analyze-button"
+                class="primary"
+              >
+                Analyze Variant
+                <span>→</span>
+              </button>
+
+            </div>
+
+
+            
+          </section>
+
+
+          <section
+            id="variant-empty"
+            class="result-placeholder"
+          >
+
+            <div>
+              ⌁
+            </div>
+
+            <h3>
+              Awaiting variant
+            </h3>
+
+            <p>
+              Enter a sequence or choose a known variant.
+            </p>
+
+          </section>
+
+
+          <section
+            id="variant-loading"
+            class="loading hidden"
+          >
+
+            <div class="spinner"></div>
+
+            <p>
+              Checking variant rules…
+            </p>
+
+          </section>
+
+
+          <section
+            id="variant-result"
+            class="result-card hidden"
+          ></section>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================= -->
+      <!-- BASIC MODEL EVALUATION -->
+      <!-- ========================= -->
+
+      <section id="evaluation" class="page">
+
+        <div class="evaluation-header">
+
+          <p class="eyebrow cyan">
+            MODEL EVALUATION
+          </p>
+
+          <h2>
+            Basic Model Evaluation
+          </h2>
+
+          <p>
+            ROC-AUC evaluation of classical sequence models
+            under different evaluation protocols.
+          </p>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- EVALUATE BUTTON -->
+        <!-- ========================= -->
+
+        <div class="evaluation-action">
+
+          <button
+            id="run-evaluation"
+            class="primary"
+          >
+            Evaluate Models
+            <span>→</span>
+          </button>
+
+          
+
+
+          <div
+            id="evaluation-loading"
+            class="evaluation-loading hidden"
+          >
+
+            <div class="evaluation-spinner"></div>
+
+            <span>
+              Analyzing model performance...
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- RESULTS -->
+        <!-- ========================= -->
+
+        <div
+          id="evaluation-results"
+          class="hidden"
+        >
+
+
+          <!-- Evaluation Setup -->
+
+          <details class="evaluation-info">
+
+            <summary>
+              Evaluation setup
+              <span>+</span>
+            </summary>
+
+            <div class="evaluation-info-content">
+
+              <div class="evaluation-definition">
+
+                <h3>
+                  Classical sequence models
+                </h3>
+
+                <p>
+                  These models provide baseline results for
+                  sequence-level genetic variant classification.
+                  The evaluated models are CNN, BiLSTM,
+                  CNN + BiLSTM, and Ensemble.
+                </p>
+
+              </div>
+
+
+              <div class="split-definition">
+
+                <div>
+
+                  <strong>
+                    Split A — Random 80/20
+                  </strong>
+
+                  <p>
+                    Variants are randomly divided into training
+                    and evaluation sets.
+                  </p>
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Split B — Gene-disjoint
+                  </strong>
+
+                  <p>
+                    Evaluation is performed on genes separated
+                    from the training genes.
+                  </p>
+
+                </div>
+
+
+                <div>
+
+                  <strong>
+                    Split C — Temporal
+                  </strong>
+
+                  <p>
+                    Evaluation uses a temporally separated
+                    dataset to examine performance under
+                    distribution changes.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </details>
+
+
+          <!-- ========================= -->
+          <!-- LINE CHART -->
+          <!-- ========================= -->
+
+          <section class="evaluation-card">
+
+            <div class="evaluation-card-header">
+
+              <div>
+
+                <p class="eyebrow">
+                  EVALUATION-BIAS ANALYSIS
+                </p>
+
+                <h3>
+                  ROC-AUC Across Splits
+                </h3>
+
+                <p>
+                  ROC-AUC of classical sequence models under
+                  random, gene-disjoint, and temporal evaluation.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="line-chart-wrapper">
+
+              <svg
+                class="evaluation-line-chart"
+                viewBox="0 0 1000 480"
+                role="img"
+                aria-label="ROC-AUC across Split A, Split B, and Split C"
+              >
+
+                <!-- Grid -->
+
+                <line
+                  x1="80"
+                  y1="60"
+                  x2="950"
+                  y2="60"
+                  class="chart-grid"
+                />
+
+                <line
+                  x1="80"
+                  y1="155"
+                  x2="950"
+                  y2="155"
+                  class="chart-grid"
+                />
+
+                <line
+                  x1="80"
+                  y1="250"
+                  x2="950"
+                  y2="250"
+                  class="chart-grid"
+                />
+
+                <line
+                  x1="80"
+                  y1="345"
+                  x2="950"
+                  y2="345"
+                  class="chart-grid"
+                />
+
+                <line
+                  x1="80"
+                  y1="440"
+                  x2="950"
+                  y2="440"
+                  class="chart-grid"
+                />
+
+
+                <!-- Y Labels -->
+
+                <text
+                  x="25"
+                  y="65"
+                  class="chart-label"
+                >
+                  0.75
+                </text>
+
+                <text
+                  x="15"
+                  y="160"
+                  class="chart-label"
+                >
+                  0.6875
+                </text>
+
+                <text
+                  x="25"
+                  y="255"
+                  class="chart-label"
+                >
+                  0.625
+                </text>
+
+                <text
+                  x="25"
+                  y="350"
+                  class="chart-label"
+                >
+                  0.5625
+                </text>
+
+                <text
+                  x="25"
+                  y="445"
+                  class="chart-label"
+                >
+                  0.50
+                </text>
+
+
+                <!-- CNN -->
+
+                <polyline
+                  points="100,102 515,193 930,284"
+                  class="chart-line cnn-line"
+                />
+
+                <circle
+                  cx="100"
+                  cy="102"
+                  r="7"
+                  class="chart-point cnn-point"
+                />
+
+                <circle
+                  cx="515"
+                  cy="193"
+                  r="7"
+                  class="chart-point cnn-point"
+                />
+
+                <circle
+                  cx="930"
+                  cy="284"
+                  r="7"
+                  class="chart-point cnn-point"
+                />
+
+
+                <!-- BiLSTM -->
+
+                <polyline
+                  points="100,209 515,211 930,330"
+                  class="chart-line bilstm-line"
+                />
+
+                <circle
+                  cx="100"
+                  cy="209"
+                  r="7"
+                  class="chart-point bilstm-point"
+                />
+
+                <circle
+                  cx="515"
+                  cy="211"
+                  r="7"
+                  class="chart-point bilstm-point"
+                />
+
+                <circle
+                  cx="930"
+                  cy="330"
+                  r="7"
+                  class="chart-point bilstm-point"
+                />
+
+
+                <!-- CNN + BiLSTM -->
+
+                <polyline
+                  points="100,153 515,176 930,307"
+                  class="chart-line hybrid-line"
+                />
+
+                <circle
+                  cx="100"
+                  cy="153"
+                  r="7"
+                  class="chart-point hybrid-point"
+                />
+
+                <circle
+                  cx="515"
+                  cy="176"
+                  r="7"
+                  class="chart-point hybrid-point"
+                />
+
+                <circle
+                  cx="930"
+                  cy="307"
+                  r="7"
+                  class="chart-point hybrid-point"
+                />
+
+
+                <!-- Ensemble -->
+
+                <polyline
+                  points="100,163 515,190 930,316"
+                  class="chart-line ensemble-line"
+                />
+
+                <circle
+                  cx="100"
+                  cy="163"
+                  r="7"
+                  class="chart-point ensemble-point"
+                />
+
+                <circle
+                  cx="515"
+                  cy="190"
+                  r="7"
+                  class="chart-point ensemble-point"
+                />
+
+                <circle
+                  cx="930"
+                  cy="316"
+                  r="7"
+                  class="chart-point ensemble-point"
+                />
+
+
+                <!-- X Labels -->
+
+                <text
+                  x="100"
+                  y="470"
+                  text-anchor="middle"
+                  class="chart-axis-label"
+                >
+                  Split A
+                </text>
+
+                <text
+                  x="515"
+                  y="470"
+                  text-anchor="middle"
+                  class="chart-axis-label"
+                >
+                  Split B
+                </text>
+
+                <text
+                  x="930"
+                  y="470"
+                  text-anchor="middle"
+                  class="chart-axis-label"
+                >
+                  Split C
+                </text>
+
+              </svg>
+
+            </div>
+
+
+            <div class="chart-legend">
+
+              <span>
+                <i class="legend-dot cnn"></i>
+                CNN
+              </span>
+
+              <span>
+                <i class="legend-dot bilstm"></i>
+                BiLSTM
+              </span>
+
+              <span>
+                <i class="legend-dot hybrid"></i>
+                CNN + BiLSTM
+              </span>
+
+              <span>
+                <i class="legend-dot ensemble"></i>
+                Ensemble
+              </span>
+
+            </div>
+
+
+            <p class="chart-footnote">
+              Split A = random 80/20 · Split B = gene-disjoint ·
+              Split C = temporal
+            </p>
+
+          </section>
+
+
+          <!-- ========================= -->
+          <!-- BAR CHART -->
+          <!-- ========================= -->
+
+          <section class="evaluation-card">
+
+            <div class="evaluation-card-header">
+
+              <div>
+
+                <p class="eyebrow">
+                  MODEL COMPARISON
+                </p>
+
+                <h3>
+                  Model Performance Under Different Evaluation Splits
+                </h3>
+
+                <p>
+                  ROC-AUC comparison of classical models across
+                  random, gene-disjoint, and temporal evaluation.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="bar-chart">
+
+
+              <!-- CNN -->
+
+              <div class="bar-group">
+
+                <div class="bar-value-group">
+
+                  <div
+                    class="bar split-a"
+                    style="height: 82%;"
+                  >
+                    <span>
+                      0.7219
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-b"
+                    style="height: 70%;"
+                  >
+                    <span>
+                      0.6864
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-c"
+                    style="height: 50%;"
+                  >
+                    <span>
+                      0.6260
+                    </span>
+                  </div>
+
+                </div>
+
+                <strong>
+                  CNN
+                </strong>
+
+              </div>
+
+
+              <!-- BiLSTM -->
+
+              <div class="bar-group">
+
+                <div class="bar-value-group">
+
+                  <div
+                    class="bar split-a"
+                    style="height: 58%;"
+                  >
+                    <span>
+                      0.6517
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-b"
+                    style="height: 57%;"
+                  >
+                    <span>
+                      0.6502
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-c"
+                    style="height: 28%;"
+                  >
+                    <span>
+                      0.5740
+                    </span>
+                  </div>
+
+                </div>
+
+                <strong>
+                  BiLSTM
+                </strong>
+
+              </div>
+
+
+              <!-- CNN + BiLSTM -->
+
+              <div class="bar-group">
+
+                <div class="bar-value-group">
+
+                  <div
+                    class="bar split-a"
+                    style="height: 71%;"
+                  >
+                    <span>
+                      0.6905
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-b"
+                    style="height: 67%;"
+                  >
+                    <span>
+                      0.6763
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-c"
+                    style="height: 40%;"
+                  >
+                    <span>
+                      0.6097
+                    </span>
+                  </div>
+
+                </div>
+
+                <strong>
+                  CNN + BiLSTM
+                </strong>
+
+              </div>
+
+
+              <!-- Ensemble -->
+
+              <div class="bar-group">
+
+                <div class="bar-value-group">
+
+                  <div
+                    class="bar split-a"
+                    style="height: 68%;"
+                  >
+                    <span>
+                      0.6820
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-b"
+                    style="height: 65%;"
+                  >
+                    <span>
+                      0.6710
+                    </span>
+                  </div>
+
+                  <div
+                    class="bar split-c"
+                    style="height: 38%;"
+                  >
+                    <span>
+                      0.6062
+                    </span>
+                  </div>
+
+                </div>
+
+                <strong>
+                  Ensemble
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <div class="bar-legend">
+
+              <span>
+                <i class="legend-dot split-a"></i>
+                Split A — Random
+              </span>
+
+              <span>
+                <i class="legend-dot split-b"></i>
+                Split B — Gene-disjoint
+              </span>
+
+              <span>
+                <i class="legend-dot split-c"></i>
+                Split C — Temporal
+              </span>
+
+            </div>
+
+
+            <p class="chart-footnote">
+              Split A: Random 80/20 · Split B: Gene-disjoint ·
+              Split C: Temporal
+            </p>
+
+          </section>
+
+
+          <!-- ========================= -->
+          <!-- OBSERVATION -->
+          <!-- ========================= -->
+
+          <section class="observation-card">
+
+            <div class="observation-icon">
+              ◈
+            </div>
+
+            <div>
+
+              <p class="eyebrow cyan">
+                EVALUATION-BIAS OBSERVATION
+              </p>
+
+              <h3>
+                Performance changes under stricter evaluation protocols
+              </h3>
+
+              <p>
+                The classical models show reduced ROC-AUC under
+                gene-disjoint and temporal evaluation compared with
+                the random split. This demonstrates that measured
+                performance is sensitive to the evaluation protocol
+                and motivates evaluation beyond a random train-test split.
+              </p>
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+      </section>
+
+
+<!-- ========================= -->
+<!-- RESEARCH RESULTS PAGE -->
+<!-- ========================= -->
+<section id="research-results" class="page">
+
+  <!-- ========================= -->
+  <!-- RESEARCH RESULTS ACTION -->
+  <!-- ========================= -->
+
+  <div class="evaluation-action">
+
+    <button
+      id="run-research-results"
+      class="primary"
+    >
+      Research Results
+      <span>→</span>
+    </button>
+
+    <div
+      id="research-results-loading"
+      class="evaluation-loading hidden"
+    >
+
+      <div class="evaluation-spinner"></div>
+
+      <span>
+        Analyzing research results...
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <div class="research-header">
+
+    <div>
+      <p class="eyebrow cyan">
+        EXPERIMENTAL RESULTS
+      </p>
+
+      <h2>
+        Research Results
+      </h2>
+
+      <p>
+        Comparative results across sequence models and evaluation protocols.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="research-header">
+
+    <div>
+  
+    </div>
+
+  </div>
+
+
+  <!-- =========================================
+       MODEL PERFORMANCE
+       ========================================= -->
+
+  <section class="research-card">
+
+    <div class="research-card-header">
+
+      <div>
+
+        <p class="eyebrow">
+          MODEL COMPARISON
+        </p>
+
+        <h3>
+          Model Performance Across Splits
+        </h3>
+
+        <p>
+          ROC-AUC comparison across random, gene-disjoint,
+          and temporal evaluation.
+        </p>
+
+      </div>
+
+      <span class="research-metric">
+        ROC-AUC
+      </span>
+
+    </div>
+
+
+    <div class="research-chart">
+
+      <div class="research-y-axis">
+        <span>1.0</span>
+        <span>0.8</span>
+        <span>0.6</span>
+        <span>0.4</span>
+        <span>0.2</span>
+        <span>0.0</span>
+      </div>
+
+
+      <div class="research-plot">
+
+        <div class="research-grid grid-100"></div>
+        <div class="research-grid grid-80"></div>
+        <div class="research-grid grid-60"></div>
+        <div class="research-grid grid-40"></div>
+        <div class="research-grid grid-20"></div>
+
+
+        <!-- CNN -->
+        <div class="research-model">
+
+          <div class="research-bars">
+
+            <div class="research-bar r-a" style="height:72.19%">
+              <span>0.722</span>
+            </div>
+
+            <div class="research-bar r-b" style="height:68.64%">
+              <span>0.686</span>
+            </div>
+
+            <div class="research-bar r-c" style="height:62.60%">
+              <span>0.626</span>
+            </div>
+
+          </div>
+
+          <label>CNN</label>
+
+        </div>
+
+
+        <!-- BiLSTM -->
+        <div class="research-model">
+
+          <div class="research-bars">
+
+            <div class="research-bar r-a" style="height:65.17%">
+              <span>0.652</span>
+            </div>
+
+            <div class="research-bar r-b" style="height:65.02%">
+              <span>0.650</span>
+            </div>
+
+            <div class="research-bar r-c" style="height:57.40%">
+              <span>0.574</span>
+            </div>
+
+          </div>
+
+          <label>BiLSTM</label>
+
+        </div>
+
+
+        <!-- CNN + BiLSTM -->
+        <div class="research-model">
+
+          <div class="research-bars">
+
+            <div class="research-bar r-a" style="height:69.05%">
+              <span>0.691</span>
+            </div>
+
+            <div class="research-bar r-b" style="height:67.63%">
+              <span>0.676</span>
+            </div>
+
+            <div class="research-bar r-c" style="height:60.97%">
+              <span>0.610</span>
+            </div>
+
+          </div>
+
+          <label>CNN+BiLSTM</label>
+
+        </div>
+
+
+        <!-- Ensemble -->
+        <div class="research-model">
+
+          <div class="research-bars">
+
+            <div class="research-bar r-a" style="height:68.20%">
+              <span>0.682</span>
+            </div>
+
+            <div class="research-bar r-b" style="height:67.10%">
+              <span>0.671</span>
+            </div>
+
+            <div class="research-bar r-c" style="height:60.62%">
+              <span>0.606</span>
+            </div>
+
+          </div>
+
+          <label>Ensemble</label>
+
+        </div>
+
+
+        <!-- DNABERT-2 -->
+        <div class="research-model">
+
+          <div class="research-bars">
+
+            <div class="research-bar r-a" style="height:91.37%">
+              <span>0.914</span>
+            </div>
+
+            <div class="research-bar r-b" style="height:67.40%">
+              <span>0.674</span>
+            </div>
+
+            <div class="research-bar r-c" style="height:77.72%">
+              <span>0.777</span>
+            </div>
+
+          </div>
+
+          <label>DNABERT-2</label>
+
+        </div>
+
+
+        <!-- NT -->
+        <div class="research-model">
+
+          <div class="research-bars">
+
+            <div class="research-bar r-a" style="height:93.43%">
+              <span>0.934</span>
+            </div>
+
+            <div class="research-bar r-b" style="height:90.16%">
+              <span>0.902</span>
+            </div>
+
+            <div class="research-bar r-c" style="height:85.19%">
+              <span>0.852</span>
+            </div>
+
+          </div>
+
+          <label>NT</label>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="research-legend">
+
+      <span>
+        <i class="research-dot dot-a"></i>
+        Split A — Random
+      </span>
+
+      <span>
+        <i class="research-dot dot-b"></i>
+        Split B — Gene-disjoint
+      </span>
+
+      <span>
+        <i class="research-dot dot-c"></i>
+        Split C — Temporal
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       LEAKAGE / EVALUATION BIAS
+       ========================================= -->
+
+  <section class="research-card">
+
+    <div class="research-card-header">
+
+      <div>
+
+        <p class="eyebrow">
+          EVALUATION-BIAS ANALYSIS
+        </p>
+
+        <h3>
+          Leakage Delta — D1
+        </h3>
+
+        <p>
+          Change in ROC-AUC from Split A to Split B and Split A to Split C.
+        </p>
+
+      </div>
+
+      <span class="research-metric">
+        ROC-AUC Δ
+      </span>
+
+    </div>
+
+
+    <div class="delta-grid">
+
+      <div class="delta-row delta-header">
+        <span>Model</span>
+        <span>A → B</span>
+        <span>A → C</span>
+      </div>
+
+
+      <div class="delta-row">
+        <strong>CNN</strong>
+        <span>0.0355</span>
+        <span>0.0959</span>
+      </div>
+
+      <div class="delta-row">
+        <strong>BiLSTM</strong>
+        <span>0.0015</span>
+        <span>0.0777</span>
+      </div>
+
+      <div class="delta-row">
+        <strong>CNN+BiLSTM</strong>
+        <span>0.0142</span>
+        <span>0.0808</span>
+      </div>
+
+      <div class="delta-row">
+        <strong>Ensemble</strong>
+        <span>0.0110</span>
+        <span>0.0758</span>
+      </div>
+
+      <div class="delta-row">
+        <strong>DNABERT-2</strong>
+        <span>0.2397</span>
+        <span>0.1364</span>
+      </div>
+
+      <div class="delta-row">
+        <strong>NT</strong>
+        <span>0.0327</span>
+        <span>0.0825</span>
+      </div>
+
+    </div>
+
+
+    <div class="research-footnote">
+      † DNABERT-2 Split-B required an LR warmup adjustment after an initial
+      representation-collapse run. Split-A and Split-C used the original
+      fixed-LR schedule.
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       NT GENERALIZATION
+       ========================================= -->
+
+  <section class="research-card">
+
+    <div class="research-card-header">
+
+      <div>
+
+        <p class="eyebrow">
+          GENERALIZATION
+        </p>
+
+        <h3>
+          NT Performance Across Evaluation Protocols
+        </h3>
+
+        <p>
+          Key evaluation metrics for the Nucleotide Transformer.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="nt-results-grid">
+
+
+      <!-- SPLIT A -->
+
+      <div class="nt-result-card nt-a">
+
+        <div class="nt-card-title">
+          <span>Split A</span>
+          <small>Random 80/20</small>
+        </div>
+
+        <div class="nt-result-row">
+          <span>ROC-AUC</span>
+          <strong>0.9343</strong>
+        </div>
+
+        <div class="nt-result-row">
+          <span>Accuracy</span>
+          <strong>0.8744</strong>
+        </div>
+
+        <div class="nt-result-row">
+          <span>Pathogenic Recall</span>
+          <strong>0.8451</strong>
+        </div>
+
+      </div>
+
+
+      <!-- SPLIT B -->
+
+      <div class="nt-result-card nt-b">
+
+        <div class="nt-card-title">
+          <span>Split B</span>
+          <small>Gene-disjoint</small>
+        </div>
+
+        <div class="nt-result-row">
+          <span>ROC-AUC</span>
+          <strong>0.9016</strong>
+        </div>
+
+        <div class="nt-result-row">
+          <span>Accuracy</span>
+          <strong>0.8377</strong>
+        </div>
+
+        <div class="nt-result-row">
+          <span>Pathogenic Recall</span>
+          <strong>0.7812</strong>
+        </div>
+
+      </div>
+
+
+      <!-- SPLIT C -->
+
+      <div class="nt-result-card nt-c">
+
+        <div class="nt-card-title">
+          <span>Split C</span>
+          <small>Temporal</small>
+        </div>
+
+        <div class="nt-result-row">
+          <span>ROC-AUC</span>
+          <strong>0.8519</strong>
+        </div>
+
+        <div class="nt-result-row">
+          <span>Accuracy</span>
+          <strong>0.7950</strong>
+        </div>
+
+        <div class="nt-result-row">
+          <span>Pathogenic Recall</span>
+          <strong>0.6713</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       KEY OBSERVATION
+       ========================================= -->
+
+  <section class="research-observation">
+
+    <div class="research-observation-icon">
+      ◈
+    </div>
+
+    <div>
+
+      <p class="eyebrow cyan">
+        RESEARCH OBSERVATION
+      </p>
+
+      <h3>
+        Performance changes under stricter evaluation protocols
+      </h3>
+
+      <p>
+        Model performance changes when evaluation moves beyond a random
+        train-test split, with temporal evaluation showing a stronger
+        reduction in measured performance.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================
+       NOTES
+       ========================================= -->
+
+  <details class="research-notes">
+
+    <summary>
+      <span>
+        Evaluation Setup &amp; Notes
+      </span>
+
+      <span>+</span>
+    </summary>
+
+    <div class="research-notes-content">
+
+      <div>
+        <strong>Split A — Random 80/20</strong>
+
+        <p>
+          Variants are randomly divided into training and evaluation sets.
+        </p>
+      </div>
+
+      <div>
+        <strong>Split B — Gene-disjoint</strong>
+
+        <p>
+          Evaluation is performed on genes separated from the training genes.
+        </p>
+      </div>
+
+      <div>
+        <strong>Split C — Temporal</strong>
+
+        <p>
+          Evaluation uses a temporally separated dataset to examine
+          performance under distribution changes.
+        </p>
+      </div>
+
+    </div>
+
+  </details>
+  
+
+</section>
+
+<!-- ========================================================= -->
+<!-- EXPERIMENTAL ANALYSIS PAGE -->
+<!-- ========================================================= -->
+
+<section
+  id="experimental-analysis"
+  class="page"
+>
+
+  <!-- ========================================================= -->
+  <!-- EXPERIMENTAL ANALYSIS ACTION -->
+  <!-- ========================================================= -->
+
+  <div class="evaluation-action">
+
+    <button
+      id="run-experimental-analysis"
+      class="primary"
+    >
+      Experimental Analysis
+      <span>→</span>
+    </button>
+
+    <div
+      id="experimental-analysis-loading"
+      class="evaluation-loading hidden"
+    >
+
+      <div class="evaluation-spinner"></div>
+
+      <span>
+        Analyzing experimental results...
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- EXPERIMENTAL ANALYSIS CONTENT -->
+  <!-- ========================================================= -->
+
+  <div
+    id="experimental-analysis-content"
+    class="experimental-content research-hidden"
+  >
+
+    <div class="research-header">
+
+      <div>
+
+        <p class="eyebrow cyan">
+          EXPERIMENTAL ANALYSIS
+        </p>
+
+        <h2>
+          Model Generalization Analysis
+        </h2>
+
+        <p>
+          Combined analysis of model performance across random,
+          gene-disjoint, and temporal evaluation protocols.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ======================================================= -->
+    <!-- BAR CHART -->
+    <!-- ======================================================= -->
+
+    <div class="research-card">
+
+      <div class="research-card-header">
+
+        <div>
+
+          <p class="eyebrow">
+            MODEL COMPARISON
+          </p>
+
+          <h3>
+            Model Performance Across Splits
+          </h3>
+
+          <p>
+            ROC-AUC comparison across random, gene-disjoint,
+            and temporal evaluation.
+          </p>
+
+        </div>
+
+        <span class="chart-label">
+          ROC-AUC
+        </span>
+
+      </div>
+
+
+      <div class="research-chart">
+
+        <div class="chart-y-axis">
+
+          <span>1.0</span>
+          <span>0.8</span>
+          <span>0.6</span>
+          <span>0.4</span>
+          <span>0.2</span>
+          <span>0.0</span>
+
+        </div>
+
+
+        <div class="bar-chart">
+
+          <!-- CNN -->
+
+          <div class="bar-group">
+
+            <div class="bars">
+
+              <div
+                class="bar split-a"
+                style="height:72.19%"
+              >
+                <span>0.722</span>
+              </div>
+
+              <div
+                class="bar split-b"
+                style="height:68.64%"
+              >
+                <span>0.686</span>
+              </div>
+
+              <div
+                class="bar split-c"
+                style="height:62.60%"
+              >
+                <span>0.626</span>
+              </div>
+
+            </div>
+
+            <span class="model-name">
+              CNN
+            </span>
+
+          </div>
+
+
+          <!-- BiLSTM -->
+
+          <div class="bar-group">
+
+            <div class="bars">
+
+              <div
+                class="bar split-a"
+                style="height:65.17%"
+              >
+                <span>0.652</span>
+              </div>
+
+              <div
+                class="bar split-b"
+                style="height:65.02%"
+              >
+                <span>0.650</span>
+              </div>
+
+              <div
+                class="bar split-c"
+                style="height:57.40%"
+              >
+                <span>0.574</span>
+              </div>
+
+            </div>
+
+            <span class="model-name">
+              BiLSTM
+            </span>
+
+          </div>
+
+
+          <!-- CNN + BiLSTM -->
+
+          <div class="bar-group">
+
+            <div class="bars">
+
+              <div
+                class="bar split-a"
+                style="height:69.05%"
+              >
+                <span>0.691</span>
+              </div>
+
+              <div
+                class="bar split-b"
+                style="height:67.63%"
+              >
+                <span>0.676</span>
+              </div>
+
+              <div
+                class="bar split-c"
+                style="height:60.97%"
+              >
+                <span>0.610</span>
+              </div>
+
+            </div>
+
+            <span class="model-name">
+              CNN+BiLSTM
+            </span>
+
+          </div>
+
+
+          <!-- Ensemble -->
+
+          <div class="bar-group">
+
+            <div class="bars">
+
+              <div
+                class="bar split-a"
+                style="height:68.20%"
+              >
+                <span>0.682</span>
+              </div>
+
+              <div
+                class="bar split-b"
+                style="height:67.10%"
+              >
+                <span>0.671</span>
+              </div>
+
+              <div
+                class="bar split-c"
+                style="height:60.62%"
+              >
+                <span>0.606</span>
+              </div>
+
+            </div>
+
+            <span class="model-name">
+              Ensemble
+            </span>
+
+          </div>
+
+
+          <!-- DNABERT-2 -->
+
+          <div class="bar-group">
+
+            <div class="bars">
+
+              <div
+                class="bar split-a"
+                style="height:91.37%"
+              >
+                <span>0.914</span>
+              </div>
+
+              <div
+                class="bar split-b"
+                style="height:67.40%"
+              >
+                <span>0.674</span>
+              </div>
+
+              <div
+                class="bar split-c"
+                style="height:77.72%"
+              >
+                <span>0.777</span>
+              </div>
+
+            </div>
+
+            <span class="model-name">
+              DNABERT-2
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="chart-legend">
+
+        <span>
+          <i class="legend-dot split-a"></i>
+          Split A — Random
+        </span>
+
+        <span>
+          <i class="legend-dot split-b"></i>
+          Split B — Gene-disjoint
+        </span>
+
+        <span>
+          <i class="legend-dot split-c"></i>
+          Split C — Temporal
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ======================================================= -->
+    <!-- LINE CHART -->
+    <!-- ======================================================= -->
+
+    <div class="research-card">
+
+      <div class="research-card-header">
+
+        <div>
+
+          <p class="eyebrow">
+            GENERALIZATION
+          </p>
+
+          <h3>
+            ROC-AUC Across Evaluation Protocols
+          </h3>
+
+          <p>
+            Change in model performance across evaluation protocols.
+          </p>
+
+        </div>
+
+        <span class="chart-label">
+          ROC-AUC
+        </span>
+
+      </div>
+
+
+      <div class="line-chart">
+
+        <div class="line-y-axis">
+
+          <span>1.0</span>
+          <span>0.8</span>
+          <span>0.6</span>
+          <span>0.4</span>
+          <span>0.2</span>
+          <span>0.0</span>
+
+        </div>
+
+
+        <svg
+          viewBox="0 0 900 330"
+          preserveAspectRatio="none"
+          class="roc-line-svg"
+        >
+
+          <!-- Grid -->
+
+          <line
+            x1="60"
+            y1="30"
+            x2="860"
+            y2="30"
+            class="chart-grid"
+          />
+
+          <line
+            x1="60"
+            y1="84"
+            x2="860"
+            y2="84"
+            class="chart-grid"
+          />
+
+          <line
+            x1="60"
+            y1="138"
+            x2="860"
+            y2="138"
+            class="chart-grid"
+          />
+
+          <line
+            x1="60"
+            y1="192"
+            x2="860"
+            y2="192"
+            class="chart-grid"
+          />
+
+          <line
+            x1="60"
+            y1="246"
+            x2="860"
+            y2="246"
+            class="chart-grid"
+          />
+
+          <line
+            x1="60"
+            y1="300"
+            x2="860"
+            y2="300"
+            class="chart-grid"
+          />
+
+
+          <!-- CNN -->
+
+          <polyline
+            points="150,105 450,130 750,162"
+            class="line-cnn"
+          />
+
+
+          <!-- BiLSTM -->
+
+          <polyline
+            points="150,124 450,124 750,145"
+            class="line-bilstm"
+          />
+
+
+          <!-- CNN + BiLSTM -->
+
+          <polyline
+            points="150,113 450,118 750,135"
+            class="line-cnn-bilstm"
+          />
+
+
+          <!-- Ensemble -->
+
+          <polyline
+            points="150,116 450,119 750,137"
+            class="line-ensemble"
+          />
+
+
+          <!-- DNABERT-2 -->
+
+          <polyline
+            points="150,77 450,118 750,95"
+            class="line-dnabert"
+          />
+
+
+          <!-- Points -->
+
+          <circle
+            cx="150"
+            cy="105"
+            r="5"
+            class="point-cnn"
+          />
+
+          <circle
+            cx="450"
+            cy="130"
+            r="5"
+            class="point-cnn"
+          />
+
+          <circle
+            cx="750"
+            cy="162"
+            r="5"
+            class="point-cnn"
+          />
+
+
+          <circle
+            cx="150"
+            cy="124"
+            r="5"
+            class="point-bilstm"
+          />
+
+          <circle
+            cx="450"
+            cy="124"
+            r="5"
+            class="point-bilstm"
+          />
+
+          <circle
+            cx="750"
+            cy="145"
+            r="5"
+            class="point-bilstm"
+          />
+
+
+          <circle
+            cx="150"
+            cy="113"
+            r="5"
+            class="point-cnn-bilstm"
+          />
+
+          <circle
+            cx="450"
+            cy="118"
+            r="5"
+            class="point-cnn-bilstm"
+          />
+
+          <circle
+            cx="750"
+            cy="135"
+            r="5"
+            class="point-cnn-bilstm"
+          />
+
+
+          <circle
+            cx="150"
+            cy="116"
+            r="5"
+            class="point-ensemble"
+          />
+
+          <circle
+            cx="450"
+            cy="119"
+            r="5"
+            class="point-ensemble"
+          />
+
+          <circle
+            cx="750"
+            cy="137"
+            r="5"
+            class="point-ensemble"
+          />
+
+
+          <circle
+            cx="150"
+            cy="77"
+            r="5"
+            class="point-dnabert"
+          />
+
+          <circle
+            cx="450"
+            cy="118"
+            r="5"
+            class="point-dnabert"
+          />
+
+          <circle
+            cx="750"
+            cy="95"
+            r="5"
+            class="point-dnabert"
+          />
+
+        </svg>
+
+
+        <div class="line-x-axis">
+
+          <span>
+            Split A — Random
+          </span>
+
+          <span>
+            Split B — Gene-disjoint
+          </span>
+
+          <span>
+            Split C — Temporal
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="line-legend">
+
+        <span>
+          <i class="legend-line cnn"></i>
+          CNN
+        </span>
+
+        <span>
+          <i class="legend-line bilstm"></i>
+          BiLSTM
+        </span>
+
+        <span>
+          <i class="legend-line cnn-bilstm"></i>
+          CNN+BiLSTM
+        </span>
+
+        <span>
+          <i class="legend-line ensemble"></i>
+          Ensemble
+        </span>
+
+        <span>
+          <i class="legend-line dnabert"></i>
+          DNABERT-2
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ======================================================= -->
+    <!-- DELTA CARDS -->
+    <!-- ======================================================= -->
+
+    <div class="research-delta-grid">
+
+      <div class="research-delta-card">
+
+        <p class="eyebrow">
+          A - B
+        </p>
+
+        <h3>
+          0.2397
+        </h3>
+
+        <p>
+          DNABERT-2 ROC-AUC delta
+        </p>
+
+        <span>
+          Random → Gene-disjoint
+        </span>
+
+      </div>
+
+
+      <div class="research-delta-card">
+
+        <p class="eyebrow">
+          A - C
+        </p>
+
+        <h3>
+          0.1364
+        </h3>
+
+        <p>
+          DNABERT-2 ROC-AUC delta
+        </p>
+
+        <span>
+          Random -> Temporal
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ======================================================= -->
+    <!-- EVALUATION NOTES -->
+    <!-- ======================================================= -->
+
+    <details class="research-notes">
+
+      <summary>
+
+        <span>
+          Evaluation Setup & Notes
+        </span>
+
+        <span>
+          +
+        </span>
+
+      </summary>
+
+
+      <div class="research-notes-content">
+
+        <div>
+
+          <strong>
+            Split A — Random
+          </strong>
+
+          <p>
+            Random 80/20 evaluation split.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            Split B — Gene-disjoint
+          </strong>
+
+          <p>
+            Evaluation on genes separated from the training data.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            Split C — Temporal
+          </strong>
+
+          <p>
+            Evaluation using a temporal holdout protocol.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <strong>
+            DNABERT-2 note
+          </strong>
+
+          <p>
+            Split-B required an LR warmup adjustment after an initial
+            representation-collapse run. Split-A and Split-C used the
+            original fixed-LR schedule.
+          </p>
+
+        </div>
+
+      </div>
+
+    </details>
+
+  </div>
+
+</section>
+
+    </main>
+
+  </div>
+
+
+  <!-- JavaScript -->
+
+  <script
+    type="module"
+    src="src/app.js"
+  ></script>
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+.single-feature {
+    grid-template-columns: 1fr 1fr;
+}
+
+.demo-buttons {
+    border-top: 1px solid var(--line);
+    margin-top: 20px;
+    padding-top: 16px;
+}
+
+.demo-buttons p {
+    color: #afc0c7;
+    font: 600 11px Manrope;
+    margin: 0 0 9px;
+}
+
+.demo-buttons>div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.demo-buttons button {
+    background: #102630;
+    border: 1px solid #35515d;
+    border-radius: 6px;
+    color: #bde8ea;
+    cursor: pointer;
+    font: 600 10px Manrope;
+    padding: 7px 9px;
+}
+
+.demo-buttons button:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.demo-buttons small {
+    color: #95abb4;
+    display: block;
+    font-size: 10px;
+    line-height: 1.45;
+    margin-top: 9px;
+    min-height: 17px;
+}
+
+.result-status.pathogenic>span {
+    background: #3c222a;
+    color: var(--danger);
+}
+
+.result-status.benign>span {
+    background: #173c34;
+    color: var(--safe);
+}
+
+.result-status.unknown>span {
+    background: #293742;
+    color: #b6c4cb;
+}
+
+.result-status.unknown h3 {
+    color: #c1d0d7;
+}
+
+.variant-fields {
+    grid-template-columns: 1fr;
+}
+
+.variant-fields div:last-child {
+    grid-column: auto;
+}
+
+.variant-fields dd {
+    font-weight: 600;
+}
+
+@media (max-width: 850px) {
+    .single-feature {
+        grid-template-columns: 1fr;
+    }
+}
